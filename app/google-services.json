@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "398921346770",
+    "firebase_url": "https://cloudfirestore-e82a1.firebaseio.com",
+    "project_id": "cloudfirestore-e82a1",
+    "storage_bucket": "cloudfirestore-e82a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398921346770:android:a5b982d863ebbbaae8c70b",
+        "android_client_info": {
+          "package_name": "kumeda.cloudfirestore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398921346770-qdsfkrc600h4ucvi6ikmoh4c5olom06l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCs63c5DPPcvbInmcHBnJndaDGv3dTtFKc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398921346770-qdsfkrc600h4ucvi6ikmoh4c5olom06l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
