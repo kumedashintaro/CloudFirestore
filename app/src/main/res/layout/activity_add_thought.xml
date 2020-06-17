@@ -60,7 +60,7 @@
         app:layout_constraintTop_toTopOf="@+id/addSeriousBtn" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/addUsernameTxt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -75,7 +75,7 @@
         app:layout_constraintTop_toBottomOf="@+id/addSeriousBtn" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/addThoughtTxt"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginStart="24dp"
@@ -88,7 +88,7 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/addUsernameTxt" />
 
     <Button
         android:id="@+id/addPostBtn"
@@ -102,5 +102,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/addThoughtTxt" />
 </androidx.constraintlayout.widget.ConstraintLayout>

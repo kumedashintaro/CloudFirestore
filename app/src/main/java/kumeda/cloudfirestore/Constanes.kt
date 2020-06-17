@@ -1,5 +1,9 @@
 package kumeda.cloudfirestore
 
+//Collection Reference
+
+const val THOUGHTS_REF = "thoughts"
+
 // Category Constants
 
 const val FUNNY = "funny"
