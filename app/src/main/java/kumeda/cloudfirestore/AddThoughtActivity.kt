@@ -21,12 +21,12 @@ class AddThoughtActivity : AppCompatActivity() {
         // add post to Firestore!
 
         val data = HashMap<String, Any>()
-        data.put("category", selectedCategory)
-        data.put("numComments", 0)
-        data.put("numLikes", 0)
-        data.put("thoughtTxt", addThoughtTxt.text.toString())
-        data.put("timestamp", FieldValue.serverTimestamp())
-        data.put("username", addUsernameTxt.text.toString())
+        data.put(CATEGORY, selectedCategory)
+        data.put(NUM_COMMENTS, 0)
+        data.put(NUM_LIKES, 0)
+        data.put(THOUGHT_TXT, addThoughtTxt.text.toString())
+        data.put(TIMESTAMP, FieldValue.serverTimestamp())
+        data.put(USERNAME, addUsernameTxt.text.toString())
 
         FirebaseFirestore.getInstance().collection(THOUGHTS_REF)
             .add(data)
