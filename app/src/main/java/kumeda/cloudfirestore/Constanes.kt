@@ -3,6 +3,7 @@ package kumeda.cloudfirestore
 //Collection Reference
 
 const val THOUGHTS_REF = "thoughts"
+const val USER_REF ="users"
 
 // Category Constants
 
@@ -19,3 +20,4 @@ const val NUM_LIKES = "numLikes"
 const val THOUGHT_TXT = "thoughTxt"
 const val TIMESTAMP = "timestamp"
 const val USERNAME ="username"
+const val DATE_CREATED = "dateCreated"

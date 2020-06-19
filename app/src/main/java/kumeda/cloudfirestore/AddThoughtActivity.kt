@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_add_thought.*
@@ -27,6 +28,7 @@ class AddThoughtActivity : AppCompatActivity() {
         data.put(THOUGHT_TXT, addThoughtTxt.text.toString())
         data.put(TIMESTAMP, FieldValue.serverTimestamp())
         data.put(USERNAME, addUsernameTxt.text.toString())
+
 
         FirebaseFirestore.getInstance().collection(THOUGHTS_REF)
             .add(data)
