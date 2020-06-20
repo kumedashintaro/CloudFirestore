@@ -1,13 +1,14 @@
-package kumeda.cloudfirestore
+package kumeda.cloudfirestore.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_add_thought.*
+import kumeda.cloudfirestore.*
+import kumeda.cloudfirestore.Utillites.*
 
 class AddThoughtActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package kumeda.cloudfirestore
+package kumeda.cloudfirestore.Activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
+import kumeda.cloudfirestore.R
 
 class LoginActivity : AppCompatActivity() {
 

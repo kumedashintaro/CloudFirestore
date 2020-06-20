@@ -1,4 +1,4 @@
-package kumeda.cloudfirestore
+package kumeda.cloudfirestore.Activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -16,8 +16,10 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-
-
+import kumeda.cloudfirestore.*
+import kumeda.cloudfirestore.Adapters.ThoughtsAdapter
+import kumeda.cloudfirestore.Model.Thought
+import kumeda.cloudfirestore.Utillites.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -39,7 +41,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(addThoughtIntent)
         }
 
-        thoughtsAdapter = ThoughtsAdapter(thoughts)
+        thoughtsAdapter = ThoughtsAdapter(thoughts) {thought ->
+            val commentsActivity = Intent(this, CommentsActivity::class.java)
+            commentsActivity.putExtra(DOCUMENT_KEY, thought.documentId)
+            startActivity(commentsActivity)
+
+        }
         thoughtListView.adapter = thoughtsAdapter
         val layoutManager = LinearLayoutManager(this)
         thoughtListView.layoutManager = layoutManager
@@ -102,9 +109,6 @@ class MainActivity : AppCompatActivity() {
         }
         return false
     }
-
-
-
 
     fun setListener(){
 

@@ -1,4 +1,4 @@
-package kumeda.cloudfirestore
+package kumeda.cloudfirestore.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +9,10 @@ import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_create_user.*
+import kumeda.cloudfirestore.Utillites.DATE_CREATED
+import kumeda.cloudfirestore.R
+import kumeda.cloudfirestore.Utillites.USERNAME
+import kumeda.cloudfirestore.Utillites.USER_REF
 
 class CreateUserActivity : AppCompatActivity() {
 

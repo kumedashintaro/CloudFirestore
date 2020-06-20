@@ -1,6 +1,6 @@
-package kumeda.cloudfirestore
+package kumeda.cloudfirestore.Model
 
-import com.google.firebase.Timestamp
+
 import java.util.Date
 
 
