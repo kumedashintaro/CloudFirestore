@@ -53,8 +53,11 @@ class CommentsActivity : AppCompatActivity() {
                         val name = data?.get(USERNAME) as String
                         val timestamp = data[TIMESTAMP] as Timestamp
                         val commentTxt = data[COMMENT_TXT] as String
+                        val documentId = document.id
+                        val userId = data[USER_ID] as? String
 
-                        val newComment = Comment(name, timestamp.toDate(), commentTxt)
+
+                        val newComment = Comment(name, timestamp.toDate(), commentTxt, documentId, userId.toString())
                         comments.add(newComment)
                     }
 
@@ -81,6 +84,7 @@ class CommentsActivity : AppCompatActivity() {
             data.put(COMMENT_TXT, commentTxt)
             data.put(TIMESTAMP, FieldValue.serverTimestamp())
             data.put(USERNAME, FirebaseAuth.getInstance().currentUser?.displayName.toString())
+            data.put(USER_ID, FirebaseAuth.getInstance().currentUser?.uid.toString())
 
             transaction.set(newCommentRef, data)
         }

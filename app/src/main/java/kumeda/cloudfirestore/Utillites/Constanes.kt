@@ -23,6 +23,7 @@ const val TIMESTAMP = "timestamp"
 const val USERNAME ="username"
 const val DATE_CREATED = "dateCreated"
 const val COMMENT_TXT = "commentTxt"
+const val USER_ID = "userId"
 
 // Other Constants
 const val DOCUMENT_KEY = "docId"

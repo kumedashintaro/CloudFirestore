@@ -3,8 +3,10 @@ package kumeda.cloudfirestore.Adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import kumeda.cloudfirestore.Model.Comment
 import kumeda.cloudfirestore.R
 import java.text.SimpleDateFormat
@@ -32,17 +34,22 @@ class CommentsAdapter(val comments: ArrayList<Comment>): RecyclerView.Adapter<Co
         val username = itemView?.findViewById<TextView>(R.id.commentListUsername)
         val timestamp = itemView?.findViewById<TextView>(R.id.commentListTimestamp)
         val commentTxt = itemView?.findViewById<TextView>(R.id.commentListCommentListTxt)
+        val optionsImage = itemView?.findViewById<ImageView>(R.id.commentOptionsImage)
 
         fun bindComment(comment: Comment) {
 
+            optionsImage?.visibility = View.INVISIBLE
             username?.text = comment.username
             commentTxt?.text = comment.commentTxt
-
 
             val dateFormatter = SimpleDateFormat("MM d, h:mm a", Locale.getDefault())
             val dateString = dateFormatter.format(comment.timestamp)
             timestamp?.text = dateString
 
+            if(FirebaseAuth.getInstance().currentUser?.uid == comment.userId){
+                optionsImage?.visibility = View.VISIBLE
+
+            }
         }
     }
 }

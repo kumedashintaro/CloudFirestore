@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kumeda.cloudfirestore.Model.Thought
 import kumeda.cloudfirestore.R
@@ -40,9 +41,11 @@ class ThoughtsAdapter(val thoughts: ArrayList<Thought>, val itemClick: (Thought)
         val numLikes = itemView?.findViewById<TextView>(R.id.listViewNumLikesLb)
         val likesImages = itemView?.findViewById<ImageView>(R.id.listViewLikesImage)
         val numComments = itemView?.findViewById<TextView>(R.id.numCommentsLbl)
+        val optionsImage = itemView?.findViewById<ImageView>(R.id.thoughtOptionsImage)
 
         fun bindThought(thought: Thought) {
 
+            optionsImage?.visibility = View.INVISIBLE
             username?.text = thought.username
             thoughtTxt?.text = thought.thoughtTxt
             numLikes?.text = thought.numLikes.toString()
@@ -56,6 +59,9 @@ class ThoughtsAdapter(val thoughts: ArrayList<Thought>, val itemClick: (Thought)
             likesImages?.setOnClickListener{
                 FirebaseFirestore.getInstance().collection(THOUGHTS_REF).document(thought.documentId)
                     .update(NUM_LIKES, thought.numLikes +1)
+            }
+            if(FirebaseAuth.getInstance().currentUser?.uid == thought.userId){
+                optionsImage?.visibility = View.VISIBLE
             }
         }
     }

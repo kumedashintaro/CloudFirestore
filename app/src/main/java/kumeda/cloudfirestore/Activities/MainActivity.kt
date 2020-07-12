@@ -154,6 +154,7 @@ class MainActivity : AppCompatActivity() {
             val numLikes = data[NUM_LIKES] as Long
             var numComments = data[NUM_COMMENTS] as Long
             val documentId = document.id
+            val userId = data[USER_ID] as? String
 
             if(numComments == null) numComments = 0
 
@@ -163,7 +164,8 @@ class MainActivity : AppCompatActivity() {
                 thoughtTxt.toString(),
                 numLikes.toInt(),
                 numComments.toInt(),
-                documentId
+                documentId,
+                userId.toString()
             )
 
             thoughts.add(newThought)
