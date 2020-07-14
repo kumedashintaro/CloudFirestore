@@ -20,9 +20,11 @@ import kumeda.cloudfirestore.*
 import kumeda.cloudfirestore.Adapters.ThoughtsAdapter
 import kumeda.cloudfirestore.Model.Thought
 import kumeda.cloudfirestore.Utillites.*
+import kumeda.cloudfirestore.`interface`.ThoughtOptinsClickListener
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ThoughtOptinsClickListener {
+
 
     var selectedCategory = FUNNY
     lateinit var thoughtsAdapter: ThoughtsAdapter
@@ -41,7 +43,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(addThoughtIntent)
         }
 
-        thoughtsAdapter = ThoughtsAdapter(thoughts) {thought ->
+        thoughtsAdapter = ThoughtsAdapter(thoughts,this) {thought ->
             val commentsActivity = Intent(this, CommentsActivity::class.java)
             commentsActivity.putExtra(DOCUMENT_KEY, thought.documentId)
             startActivity(commentsActivity)
@@ -73,6 +75,12 @@ class MainActivity : AppCompatActivity() {
             menuItem.title = "Logout"
         }
         return super.onPrepareOptionsMenu(menu)
+    }
+
+
+    override fun thoughtOptionsMenunClicked(thought: Thought) {
+
+
     }
 
     fun updateUI() {

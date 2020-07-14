@@ -23,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:clickable="true"
         android:text="Oct 11, 9:06.PM"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="12sp"

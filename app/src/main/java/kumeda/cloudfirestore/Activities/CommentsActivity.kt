@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.getSystemService
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,8 +21,11 @@ import kumeda.cloudfirestore.Adapters.CommentsAdapter
 import kumeda.cloudfirestore.Model.Comment
 import kumeda.cloudfirestore.R
 import kumeda.cloudfirestore.Utillites.*
+import kumeda.cloudfirestore.`interface`.CommentOptionsClickListener
 
-class CommentsActivity : AppCompatActivity() {
+class CommentsActivity : AppCompatActivity() , CommentOptionsClickListener{
+
+
 
     lateinit var thoughtDocumentId: String
     lateinit var commentsAdapter : CommentsAdapter
@@ -31,7 +36,7 @@ class CommentsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_comments)
         thoughtDocumentId = intent.getStringExtra(DOCUMENT_KEY)
 
-        commentsAdapter = CommentsAdapter(comments)
+        commentsAdapter = CommentsAdapter(comments,this)
         commentListView.adapter = commentsAdapter
         val layoutManager = LinearLayoutManager(this)
         commentListView.layoutManager = layoutManager
@@ -56,7 +61,6 @@ class CommentsActivity : AppCompatActivity() {
                         val documentId = document.id
                         val userId = data[USER_ID] as? String
 
-
                         val newComment = Comment(name, timestamp.toDate(), commentTxt, documentId, userId.toString())
                         comments.add(newComment)
                     }
@@ -64,6 +68,40 @@ class CommentsActivity : AppCompatActivity() {
                     commentsAdapter.notifyDataSetChanged()
                 }
             }
+    }
+
+    override fun optionMenuClicked(comment: Comment) {
+        val builder = AlertDialog.Builder(this)
+        val dialogView = layoutInflater.inflate(R.layout.options_menu,null)
+        val deleteBtn = dialogView.findViewById<Button>(R.id.optionDeleteBtn)
+        val editBtn = dialogView.findViewById<Button>(R.id.optionEditBtn)
+
+        builder.setView(dialogView)
+            .setNegativeButton("Cancel"){ _, _ ->}
+        val ad = builder.show()
+
+        deleteBtn.setOnClickListener {
+            val commentRef = FirebaseFirestore.getInstance().collection(THOUGHTS_REF).document(thoughtDocumentId)
+                .collection(COMMENTS_REF).document(comment.documentId)
+            val thoughtRef = FirebaseFirestore.getInstance().collection(THOUGHTS_REF).document(thoughtDocumentId)
+
+
+            FirebaseFirestore.getInstance().runTransaction { transaction ->
+
+                val thought = transaction.get(thoughtRef)
+                val numComments = thought.getLong(NUM_COMMENTS)?.minus(1)
+                transaction.update(thoughtRef, NUM_COMMENTS, numComments)
+
+                transaction.delete(commentRef)
+            }.addOnSuccessListener{
+                ad.dismiss()
+            }.addOnFailureListener{exception ->
+                Log.e("Exception", "Could not add comment ${exception.localizedMessage}")
+
+            }
+        }
+        editBtn.setOnClickListener {
+        }
     }
 
     fun addCommentClicked(view: View) {

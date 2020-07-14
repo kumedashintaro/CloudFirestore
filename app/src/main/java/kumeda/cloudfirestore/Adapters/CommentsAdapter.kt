@@ -9,11 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import kumeda.cloudfirestore.Model.Comment
 import kumeda.cloudfirestore.R
+import kumeda.cloudfirestore.`interface`.CommentOptionsClickListener
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class CommentsAdapter(val comments: ArrayList<Comment>): RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
+class CommentsAdapter(val comments: ArrayList<Comment>, val commentOptionsListener: CommentOptionsClickListener): RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
@@ -48,6 +49,9 @@ class CommentsAdapter(val comments: ArrayList<Comment>): RecyclerView.Adapter<Co
 
             if(FirebaseAuth.getInstance().currentUser?.uid == comment.userId){
                 optionsImage?.visibility = View.VISIBLE
+                optionsImage?.setOnClickListener {
+                    commentOptionsListener.optionMenuClicked(comment)
+                }
 
             }
         }

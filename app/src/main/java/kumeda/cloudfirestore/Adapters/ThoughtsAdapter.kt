@@ -12,11 +12,12 @@ import kumeda.cloudfirestore.Model.Thought
 import kumeda.cloudfirestore.R
 import kumeda.cloudfirestore.Utillites.NUM_LIKES
 import kumeda.cloudfirestore.Utillites.THOUGHTS_REF
+import kumeda.cloudfirestore.`interface`.ThoughtOptinsClickListener
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ThoughtsAdapter(val thoughts: ArrayList<Thought>, val itemClick: (Thought) -> Unit) :
+class ThoughtsAdapter(val thoughts: ArrayList<Thought>, val thoughtOptionsListener: ThoughtOptinsClickListener, val itemClick: (Thought) -> Unit) :
     RecyclerView.Adapter<ThoughtsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -62,6 +63,10 @@ class ThoughtsAdapter(val thoughts: ArrayList<Thought>, val itemClick: (Thought)
             }
             if(FirebaseAuth.getInstance().currentUser?.uid == thought.userId){
                 optionsImage?.visibility = View.VISIBLE
+                optionsImage?.setOnClickListener {
+                   thoughtOptionsListener.thoughtOptionsMenunClicked(thought)
+
+                }
             }
         }
     }
