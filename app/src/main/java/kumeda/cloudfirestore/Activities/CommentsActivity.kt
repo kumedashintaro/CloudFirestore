@@ -1,6 +1,7 @@
 package kumeda.cloudfirestore.Activities
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -101,6 +102,12 @@ class CommentsActivity : AppCompatActivity() , CommentOptionsClickListener{
             }
         }
         editBtn.setOnClickListener {
+            val updateIntent = Intent(this, UpdateCommentActivity::class.java)
+            updateIntent.putExtra(THOUGHT_DOC_ID_EXTRA, thoughtDocumentId)
+            updateIntent.putExtra(COMMENT_DOC_ID_EXTRA, comment.documentId)
+            updateIntent.putExtra(COMMENT_TXT_EXTRA, comment.commentTxt)
+            ad.dismiss()
+            startActivity(updateIntent)
         }
     }
 

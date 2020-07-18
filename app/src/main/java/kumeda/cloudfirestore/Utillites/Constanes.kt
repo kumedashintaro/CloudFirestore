@@ -27,3 +27,6 @@ const val USER_ID = "userId"
 
 // Other Constants
 const val DOCUMENT_KEY = "docId"
+const val THOUGHT_DOC_ID_EXTRA = "thoughtDocId"
+const val COMMENT_DOC_ID_EXTRA = "commentDocId"
+const val COMMENT_TXT_EXTRA = "commentTxtExtra"
